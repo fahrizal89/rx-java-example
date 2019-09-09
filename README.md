@@ -118,3 +118,21 @@ Observable.fromIterable(stringList)
             .concatMap((Function<Integer, ObservableSource<?>>) s -> getModifiedObservable(s))
             .subscribe(getObserver());
 ```
+# Filter
+This operator emits only those items from an Observable that pass a predicate test.
+```
+Observable.just(1, 2, 3, 4, 5, 6)
+        .filter(new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) throws Exception {
+                return (integer % 2 == 0);
+            }
+        })
+```
+
+Output:
+```
+onNext: 2
+onNext: 4
+onNext: 6
+```
